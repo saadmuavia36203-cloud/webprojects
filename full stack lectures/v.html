@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider</title>
+  <style>
+  
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+       background-position: center;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide-text {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+
+    .buttons {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 20px;
+    }
+
+    .btn {
+      color: rgb(22, 13, 55);
+      font-size: 40px !important;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+     
+      border-radius: 50%;
+      
+      transition: 0.3s;
+    }
+
+    .btn:hover { opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider">
+    <div class="slide active" style="background-image: url('shirt.jpg');">
+      <div class="slide-text">یہ پہلا سلائیڈ ہے</div>
+    </div>
+    <div class="slide" style="background-image: url('shirt.jpg');">
+      <div class="slide-text">یہ دوسرا سلائیڈ ہے</div>
+    </div>
+    <div class="slide" style="background-image: url('shirt.jpg');">
+      <div class="slide-text">یہ ہے</div>
+    </div>
+
+    <div class="buttons">
+      <button class="btn" onclick="prevSlide()">&#10094;</button>
+      <button class="btn" onclick="nextSlide()">&#10095;</button>
+    </div>
+  </div>
+
+  <script>
+    let slides = document.querySelectorAll(".slide");
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) slide.classList.add("active");
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    function prevSlide() {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    }
+  </script>
+
+</body>
+</html
